@@ -9,6 +9,7 @@ import { TagComponent } from './dashboard/tag/tag.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {routing} from './app.routing';
+import { IncidentseverityComponent } from './feedback/incidentseverity/incidentseverity.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {routing} from './app.routing';
     FeedbackComponent,
     TagComponent,
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    IncidentseverityComponent
   ],
   imports: [
     BrowserModule,
