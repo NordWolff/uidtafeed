@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-incidentseverity',
@@ -6,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./incidentseverity.component.css']
 })
 export class IncidentseverityComponent implements OnInit {
+  incident = '';
+  genders = [
+    'männlich',
+    'weiblich'
+  ];
 
-  constructor() { }
+  constructor() {}
+
+  onSubmit(result: NgForm): void{
+    console.log(result);
+  }
 
   ngOnInit(): void {
   }
