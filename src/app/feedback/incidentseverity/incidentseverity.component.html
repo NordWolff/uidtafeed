@@ -1,39 +1,66 @@
 <div class="row">
   <div class="col-md-6">
     <h3>Reactive - Auswahl Textfelder festlegen</h3>
-    <form (ngSubmit)="onSubmit(result)" #result="ngForm">
+    <form [formGroup]="incidentForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="formData">
+          <div class="form-group label-floating" [ngClass]="{'has-success': incidentForm.get(['formData', 'id']).valid, 'has-danger': incidentForm.get(['formData', 'id']).invalid}">
+            <label class="control-label">ID</label>
+            <input type="number" class="form-control" formControlName="id"/>
+            <span class="form-control-feedback">
+                    <i class="material-icons"
+                       *ngIf="incidentForm.get(['formData', 'id']).valid"
+                    >done</i>
+                    <i class="material-icons"
+                       *ngIf="incidentForm.get(['formData', 'id']).invalid"
+                    >clear</i>
+                </span>
+          </div>
+          <div class="form-group label-floating" [ngClass]="{'has-success': incidentForm.get(['formData', 'input']).valid, 'has-danger': incidentForm.get(['formData', 'input']).invalid}">
+            <label class="control-label" for="input">Stärke der Störung</label>
+            <input type="text" value="" id="input" name="input" class="form-control"
+                   required="required"
+                   formControlName="input"
 
-        <div class="form-group label-floating" [ngClass]="{'has-success': result.valid, 'has-danger': result.invalid }">
-          <label class="control-label" for="input">Stärke der Störung</label>
-          <input type="text" value="" id="input" name="input" class="form-control"
-                 [ngModel]="incident"
-                 required="required"
-                 #input="ngModel"
-          />
-          <span class="form-control-feedback">
-          <i class="material-icons"
-             *ngIf="result.valid"
-          >done</i>
-          <i class="material-icons"
-             *ngIf="!result.valid"
-          >clear</i>
+            />
+            <span class="form-control-feedback">
+                    <i class="material-icons"
+                       *ngIf="incidentForm.get(['formData', 'input']).valid"
+                    >done</i>
+                    <i class="material-icons"
+                       *ngIf="incidentForm.get(['formData', 'input']).invalid"
+                    >clear</i>
+                </span>
+          </div>
+          <div *ngIf="incidentForm.get(['formData', 'input']).invalid">Text Eingabe ungültig</div>
+          <br>
+          <!-- Radiobutton -->
+          <div class="form-check form-check-radio" *ngFor="let g of genders">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" formControlName="gender" [value]="g">
+              {{ g }}
+              <span class="circle">
+            <span class="check"></span>
         </span>
-        </div>
-        <div *ngIf="!input.valid">Text Eingabe ungültig</div>
-
-      <div class="form-check form-check-radio form-check-inline" *ngFor="let g of genders">
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="gender" id="gender"
-          [value]="g"
-          ngModel
-          >{{ g }}
-          <span class="circle">
-        <span class="check"></span>
-    </span>
-        </label>
+            </label>
+          </div>
       </div>
-        <br>
-        <button type="submit" class="btn btn-info" [disabled]="!result.valid">Speichern</button>
+
+      <!-- Array -->
+
+      <div formArrayName="list">
+        <div class="form-group label-floating has-success" *ngFor="let g of getList(), let i = index">
+          <input type="text" class="form-control" formControlName="{{ i }}" />
+          <span class="form-control-feedback">
+           <i class="material-icons">done</i>
+           </span>
+        </div>
+      </div>
+
+
+
+      <button type="button" class="btn btn-default" (click)="onAddInput()">Hinzufügen</button>
+
+        <button type="submit" class="btn btn-info" [disabled]="!incidentForm.valid">Speichern</button>
 
     </form>
   </div>
