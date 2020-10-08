@@ -1,14 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {FeedbackComponent} from './feedback/feedback.component';
-import {IncidentseverityComponent} from './feedback/incidentseverity/incidentseverity.component';
+import {ReportListComponent} from './report-list/report-list.component';
 
 const APP_ROUTES: Routes = [
-  { path: '', component: AppComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'feedback', component: FeedbackComponent},
-  { path: 'incidentsverity', component: IncidentseverityComponent}
+  { path: '', component: DashboardComponent},
+  { path: 'report', component: ReportListComponent},
   ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

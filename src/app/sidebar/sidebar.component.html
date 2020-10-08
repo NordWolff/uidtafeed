@@ -1,31 +1,22 @@
-
-
-
-  <div class="sidebar">
+ <div class="sidebar">
     <div class="logo bg-secondary">
-      <a [routerLink]="['/dashboard']" class="simple-text logo-normal">
+      <a [routerLink]="['/']" class="simple-text logo-normal">
         <img src="assets/img/logo-light.png" width="" height="" alt="" loading="lazy">
         <br>
-        <span class="badge badge-success">{{ angular_version }}</span>
+        <span class="badge badge-success">{{ angularVersion }}</span>
       </a>
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">
-          <i class="material-icons" style="vertical-align: inherit;">Dashboard</i>
-          <p style="vertical-align: inherit;">Dashboard</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/feedback']">
-          <i class="material-icons" style="vertical-align: inherit;">Feedback</i>
-          <p style="vertical-align: inherit;">Feedback</p>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/report']">
+          <i class="material-icons" style="vertical-align: inherit;">ReportList</i>
+          <p style="vertical-align: inherit;">Report-List</p>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active">
-          <i class="material-icons" style="vertical-align: inherit;">Benutzerprofil</i>
+          <i class="material-icons" style="vertical-align: inherit;">BenutzerProfil</i>
           <p style="vertical-align: inherit;">Benutzerprofil</p>
         </a>
       </li>
@@ -33,4 +24,3 @@
     </div>
     <div class="sidebar-background"></div>
   </div>
-
