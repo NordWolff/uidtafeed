@@ -1,16 +1,9 @@
-<h3>Reports Liste</h3>
+<br>
 <div class="ui middle aligned selection divided list">
-  <a class="item" *ngFor="let report of reports">
-    <img class="ui tiny image rounded"
-         *ngIf="report.thumbnails && report.thumbnails[0] && report.thumbnails[0].url"
-          [src]="report.thumbnails[0].url">
-    <div class="content">
-      <div class="header">{{ report.line_id }}</div>
-      <div *ngIf="report.incident_severity" class="description">{{ report.incident_severity }}</div>
-    </div>
-    <div class="metadata">
-      <span>{{ report.author }}</span>
-      <br>
-    </div>
-  </a>
+  <app-report-list-item
+    class="item"
+    *ngFor="let b of reports"
+    [report]="b"
+    (click)="showDetails(b)">
+  </app-report-list-item>
 </div>

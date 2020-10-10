@@ -8,8 +8,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {routing} from './app.routing';
 import { ReactiveFormsModule } from '@angular/forms';
-import {PropertyBindingComponent} from './databinding/property-binding.component';
 import { ReportListComponent } from './report-list/report-list.component';
+import { ReportListItemComponent } from './report-list-item/report-list-item.component';
+import { ReportDetailsComponent } from './report-details/report-details.component';
+import { ReportShowComponent } from './report-show/report-show.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,10 @@ import { ReportListComponent } from './report-list/report-list.component';
     FooterComponent,
     DashboardComponent,
     SidebarComponent,
-    PropertyBindingComponent,
-    ReportListComponent
+    ReportListComponent,
+    ReportListItemComponent,
+    ReportDetailsComponent,
+    ReportShowComponent
   ],
   imports: [
     BrowserModule,

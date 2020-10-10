@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Report} from '../shared/report';
 import {DoneStatus} from '../shared/done-status.enum';
 
@@ -9,6 +9,7 @@ import {DoneStatus} from '../shared/done-status.enum';
 })
 export class ReportListComponent implements OnInit {
   reports: Report[];
+  @Output() showDetailsEvent = new EventEmitter<Report>();
 
   constructor() { }
 
@@ -51,6 +52,9 @@ export class ReportListComponent implements OnInit {
         author: 'assia@service'
       },
     ];
+  }
+  showDetails(report: Report): void {
+    this.showDetailsEvent.emit(report);
   }
 
 }
