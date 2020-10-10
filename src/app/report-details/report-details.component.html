@@ -1,0 +1,28 @@
+<div *ngIf="report">
+  <h1>{{ report.line_id }}</h1>
+  <h3 *ngIf="report.incident_type">{{ report.incident_type }}</h3>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="four wide column">
+      <h4>Autor</h4><ng-container>{{ report.author }}</ng-container>
+    </div>
+    <div class="four wide column">
+      <h4>Stärke der Störung</h4>
+      {{ report.incident_severity }}
+    </div>
+    <div class="four wide column">
+      <h4>Erschienen</h4>
+      {{ report.published | date }}
+    </div>
+
+      <h4>Beschreibung</h4>
+    <p>{{ report.free_text }}</p>
+    <div class="ui small images">
+      <img *ngFor="let thumbnail of report.thumbnails"
+      [src]="thumbnail.url">
+    </div>
+    <button class="ui red button" (click)="showReportList()">Zurück zur Reportliste</button>
+
+
+  </div>
+</div>
