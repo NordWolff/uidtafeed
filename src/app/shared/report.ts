@@ -1,18 +1,19 @@
 import {DoneStatus} from './done-status.enum';
 
 export interface Report {
-  line_id: string;
-  free_text?: string;
-  incident_severity: string;
-  resolved_ci: string;
-  incident_type: string;
+  lineId: string;
+  freeText?: string;
+  incidentSeverity: string;
+  resolvedCi: string;
+  incidentType: string;
   attr: string;
-  known_error: string;
+  knownError: string;
   published: Date;
   edit?: Date;
   status: DoneStatus;
   thumbnails?: Thumbnail[];
   author: string;
+  rating?: number;
 }
 
 

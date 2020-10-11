@@ -1,9 +1,9 @@
-<br>
 <div class="ui middle aligned selection divided list">
   <app-report-list-item
     class="item"
     *ngFor="let b of reports"
     [report]="b"
-    (click)="showDetails(b)">
+    [routerLink]="b.lineId"
+  >
   </app-report-list-item>
 </div>

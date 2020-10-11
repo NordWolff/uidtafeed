@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Report} from '../shared/report';
+import {ReportStoreService} from '../shared/report-store.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-report-details',
@@ -7,18 +9,20 @@ import {Report} from '../shared/report';
   styleUrls: ['./report-details.component.css']
 })
 export class ReportDetailsComponent implements OnInit {
-  @Input() report: Report;
-  @Output() showListEvent = new EventEmitter<any>();
+  report: Report;
 
-  constructor() { }
+  constructor(
+    private bs: ReportStoreService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    const params = this.route.snapshot.paramMap;
+    this.report = this.bs.getSingle(params.get('lineId'));
   }
   getRating(num: number): any {
     return new Array(num);
   }
-  showReportList(): void {
-    this.showListEvent.emit();
-  }
+
 
 }

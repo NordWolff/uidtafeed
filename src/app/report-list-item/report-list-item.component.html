@@ -2,8 +2,8 @@
      *ngIf="report.thumbnails && report.thumbnails[0] && report.thumbnails[0].url"
      [src]="report.thumbnails[0].url">
 <div class="content">
-  <div class="header">{{ report.line_id }}
-    <div *ngIf="report.incident_type" class="description">{{ report.incident_type }}</div>
+  <div class="header">{{ report.lineId }}
+    <div *ngIf="report.incidentType" class="description">{{ report.incidentType }}</div>
     <div class="metadata">
       <span>{{ report.status }}</span>
       <br>
