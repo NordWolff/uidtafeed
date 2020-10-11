@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Report} from '../shared/report';
 import {ReportStoreService} from '../shared/report-store.service';
 
@@ -9,15 +9,12 @@ import {ReportStoreService} from '../shared/report-store.service';
 })
 export class ReportListComponent implements OnInit {
   reports: Report[];
-  @Output() showDetailsEvent = new EventEmitter<Report>();
 
   constructor(private bs: ReportStoreService) { }
 
   ngOnInit(): void {
     this.reports = this.bs.getAll();
   }
-  showDetails(report: Report): void {
-    this.showDetailsEvent.emit(report);
-  }
+
 
 }

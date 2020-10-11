@@ -1,28 +1,17 @@
-import { Component } from '@angular/core';
-import {Report} from './shared/report';
-
-type ViewState = 'list' | 'details';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'DTAFeed';
 
-  report: Report;
-  viewState: ViewState = 'list';
   constructor() { }
 
   ngOnInit(): void {
   }
-  showList(): void {
-    this.viewState = 'list';
-  }
-  showDetails(report: Report): void {
-    this.report = report;
-    this.viewState = 'details';
-  }
+
 
 }
