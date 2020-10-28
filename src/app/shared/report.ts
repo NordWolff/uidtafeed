@@ -1,6 +1,7 @@
 import {DoneStatus} from './done-status.enum';
 
 export interface Report {
+  id: number;
   lineId: string;
   freeText?: string;
   incidentSeverity: string;
@@ -10,7 +11,7 @@ export interface Report {
   knownError: string;
   published: Date;
   edit?: Date;
-  status: DoneStatus;
+  status?: DoneStatus;
   thumbnails?: Thumbnail[];
   author: string;
   rating?: number;

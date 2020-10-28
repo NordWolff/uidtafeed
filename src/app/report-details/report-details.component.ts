@@ -12,13 +12,14 @@ export class ReportDetailsComponent implements OnInit {
   report: Report;
 
   constructor(
-    private bs: ReportStoreService,
+    private reportStoreService: ReportStoreService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     const params = this.route.snapshot.paramMap;
-    this.report = this.bs.getSingle(params.get('lineId'));
+    this.reportStoreService.getSingle(params.get('lineId'))
+      .subscribe(b => this.report = b);
   }
   getRating(num: number): any {
     return new Array(num);

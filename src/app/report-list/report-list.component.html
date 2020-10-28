@@ -1,9 +1,12 @@
 <div class="ui middle aligned selection divided list">
+  <button (click)="storeData()" class="ui button blue">Daten senden</button>
+  <br>
   <app-report-list-item
     class="item"
     *ngFor="let b of reports"
     [report]="b"
     [routerLink]="b.lineId"
   >
+
   </app-report-list-item>
 </div>

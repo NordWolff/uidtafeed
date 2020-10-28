@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import {Report} from './report';
 import {DoneStatus} from './done-status.enum';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportStoreService {
   reports: Report[];
+  private booksApi = 'https://reports-ca530.firebaseio.com/report.json';
+  private api = 'http://localhost:8090';
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.reports = [
       {
+        id: 1,
         lineId: 'DEU.DTAG.1234',
-        freeText: '. APL defekt APL locker => weiter an DTTechnik die den Apl neu befestigt haben 13.03. \n' +
+        freeText: 'APL defekt APL locker => weiter an DTTechnik die den Apl neu befestigt haben 13.03. \n' +
           'Achtung: Laut ASSIA könnte das eine Stichleitung sein. Bitte eine Argusmessung speichern und an mich schicken - ',
         incidentSeverity: 'häufig (jeden Tag)', // Stärke der Störung
         resolvedCi: 'IAD / Router / Kabel zum IAD', // Wo wurde die Störung behoben:
@@ -30,7 +35,8 @@ export class ReportStoreService {
         rating: 4
       },
       {
-        lineId: 'DEU.DTAG.2345',
+        id: 2,
+        lineId: 'DEU.DTAG.3456',
         freeText: 'Der Anschluss wurde mittlerweile vom Port bis zur 1.TAE "vergoldet". Sämtliche offensichtlichen Vectoringverbundstörer in der Nachbarschaft wurde beseitigt (Stichleitungen, ungeeignete Endltg., usw.) und trotzdem bekommt der Anschluss immer wieder unerklärliche ' +
           'Retransmissions bis zum Synch.abbruch. ASSIA regelt hier trotzdem nicht runter um die Sache stabil zu kriegen. Wieso nicht?',
         incidentSeverity: 'machmal (1-2 x pro Woche)',
@@ -50,10 +56,30 @@ export class ReportStoreService {
       },
     ];
   }
-  getAll(): Report[] {
-    return this.reports;
+  getAll(): Observable<Report[]> {
+    return this.http.get<any[]>(`${this.api}/reports`);
   }
-  getSingle(lineId: string): Report {
-    return this.reports.find(report => report.lineId === lineId);
+  getSingle(lineId: string): Observable<Report> {
+    return this.http.get<any>(
+      `${this.api}/report/${lineId}`
+    );
+  }
+  remove(lineId: string): Observable<any> {
+    return this.http.delete(
+      `${this.api}/report/${lineId}`,
+      { responseType: 'text'}
+    );
+  }
+
+
+  /**
+   * stellt die Daten bei Firebase bereit
+   * https://console.firebase.google.com/project/reports-ca530/database/reports-ca530/data
+   */
+  storeData(): any {
+    const body = JSON.stringify(this.reports);
+    const headers = new HttpHeaders({'Content-Type': 'application/json,charset=utf-8'});
+    return this.http.put(this.booksApi, body, {headers});
+
   }
 }

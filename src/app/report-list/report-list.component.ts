@@ -10,10 +10,20 @@ import {ReportStoreService} from '../shared/report-store.service';
 export class ReportListComponent implements OnInit {
   reports: Report[];
 
-  constructor(private bs: ReportStoreService) { }
+  constructor(private reportStoreService: ReportStoreService) { }
 
   ngOnInit(): void {
-    this.reports = this.bs.getAll();
+    this.reportStoreService.getAll().subscribe(res => this.reports = res);
+  }
+
+  /**
+   * stellt die Daten bei Firebase bereit
+   * report-store.service.ts
+   * https://console.firebase.google.com/project/reports-ca530/database/reports-ca530/data
+   */
+  storeData(): void {
+    this.reportStoreService.storeData()
+      .subscribe();
   }
 
 

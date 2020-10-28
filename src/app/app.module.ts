@@ -7,6 +7,7 @@ import { ReportListItemComponent } from './report-list-item/report-list-item.com
 import { ReportDetailsComponent } from './report-details/report-details.component';
 import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './home/home.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
