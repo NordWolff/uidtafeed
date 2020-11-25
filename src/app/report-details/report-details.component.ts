@@ -3,6 +3,7 @@ import {Report} from '../shared/report';
 import {ReportStoreService} from '../shared/report-store.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-report-details',
   templateUrl: './report-details.component.html',
@@ -18,8 +19,7 @@ export class ReportDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getReportByLineId();
-
+    this.getfindByLineId();
   }
 
   getReportByLineId(): void {
@@ -29,6 +29,14 @@ export class ReportDetailsComponent implements OnInit {
         this.report = b,
         console.table(this.report);
       });
+  }
+
+  getfindByLineId(): void {
+    const params = this.route.snapshot.paramMap;
+    this.reportStoreService.findByLineId(params.get('lineId'), (b) => {
+      this.report = b,
+        console.table(this.report);
+    });
   }
 
 

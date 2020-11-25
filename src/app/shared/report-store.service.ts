@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Report} from './report';
 import {HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {publish} from 'pubsub-js';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class ReportStoreService {
     return this.http.get<any>(
       `${this.api}/report/${lineId}`
     );
+  }
+  findByLineId(lineId: string, updateFunction: (result: Report) => void): void{
+    this.http.get<Report>(this.api + '/report/' + lineId).subscribe(updateFunction);
+    publish('report.search', lineId);
   }
 
 
