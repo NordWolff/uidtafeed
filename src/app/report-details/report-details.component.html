@@ -1,32 +1,42 @@
 <div *ngIf="report">
-  <h1>{{ report.lineId }}</h1>
-  <h3 *ngIf="report.incidentType">{{ report.incidentType }}</h3>
+  <h1>{{ report.incidentType }}</h1>
+  <h3 *ngIf="report.knownError">{{ report.knownError }}</h3>
   <div class="ui divider"></div>
   <div class="ui grid">
     <div class="four wide column">
       <h4>Autor</h4>
-      <ng-container>
-        {{ report.author }}<br>
-      </ng-container>
+        {{ report.attr }}
     </div>
     <div class="four wide column">
-      <h4>Stärke der Störung</h4>
-      {{ report.incidentSeverity }}
+      <h4>LineID</h4>
+      {{ (report.lineId) + '!'}}
     </div>
     <div class="four wide column">
       <h4>Erschienen</h4>
-      {{ report.published | date }}
+      {{ report.published }}
     </div>
     <div class="four wide column">
       <h4>Rating</h4>
       <i class="yellow star icon"
-      *ngFor="let p of getRating(report.rating)"></i>
+         *ngFor="let r of getRating(report.rating)"></i>
     </div>
   </div>
   <h4>Beschreibung</h4>
-  <p>{{ report.freeText }}</p>
+  <p>{{ report.freeText}}</p>
   <div class="ui small images">
     <img *ngFor="let thumbnail of report.thumbnails"
          [src]="thumbnail.url">
   </div>
+  <button class="ui tiny red labeled icon button"
+          (click)="removeReport()">
+    <i class="remove icon"></i> Report löschen
+  </button>
 </div>
+<br>
+<pre class="text-muted">
+  {{report|json}}
+</pre>
+
+<ng-template #loading>
+  <div class="ui active centered inline loader"></div>
+</ng-template>

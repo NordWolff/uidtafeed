@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Report} from '../shared/report';
 import {ReportStoreService} from '../shared/report-store.service';
 
@@ -13,17 +13,14 @@ export class ReportListComponent implements OnInit {
   constructor(private reportStoreService: ReportStoreService) { }
 
   ngOnInit(): void {
-    this.reportStoreService.getAll().subscribe(res => this.reports = res);
+    this.getReports();
   }
-
-  /**
-   * stellt die Daten bei Firebase bereit
-   * report-store.service.ts
-   * https://console.firebase.google.com/project/reports-ca530/database/reports-ca530/data
-   */
-  storeData(): void {
-    this.reportStoreService.storeData()
-      .subscribe();
+  getReports(): void {
+    this.reportStoreService.getAll()
+      .subscribe(resp => {
+        this.reports = resp;
+        console.table(resp);
+      });
   }
 
 
