@@ -22,13 +22,8 @@ export class ReportStoreService {
     return this.http.get<any[]>(url);
   }
 
-  getSingleByLineId(lineId: string): Observable<Report> {
-    return this.http.get<any>(
-      `${this.api}/report/${lineId}`
-    );
-  }
-  findByLineId(lineId: string, updateFunction: (result: Report) => void): void{
-    this.http.get<Report>(this.api + '/report/' + lineId).subscribe(updateFunction);
+  findByLineId(lineId: string, updateFunction: (result: Array<Report>) => void): void{
+    this.http.get<Array<Report>>(this.api + '/report/' + lineId).subscribe(updateFunction);
     publish('report.search', lineId);
   }
 

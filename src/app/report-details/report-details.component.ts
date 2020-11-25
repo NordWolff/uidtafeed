@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./report-details.component.css']
 })
 export class ReportDetailsComponent implements OnInit {
-  report: Report;
+  report: Array<Report>;
 
   constructor(
     private reportStoreService: ReportStoreService,
@@ -22,20 +22,10 @@ export class ReportDetailsComponent implements OnInit {
     this.getfindByLineId();
   }
 
-  getReportByLineId(): void {
-    const params = this.route.snapshot.paramMap;
-    this.reportStoreService.getSingleByLineId(params.get('lineId'))
-      .subscribe((b) => {
-        this.report = b,
-        console.table(this.report);
-      });
-  }
-
   getfindByLineId(): void {
     const params = this.route.snapshot.paramMap;
     this.reportStoreService.findByLineId(params.get('lineId'), (b) => {
-      this.report = b,
-        console.table(this.report);
+      this.report = b;
     });
   }
 
@@ -46,13 +36,13 @@ export class ReportDetailsComponent implements OnInit {
 
   removeReport(): void {
     if (confirm('Wirklich löschen?')) {
-      this.reportStoreService.remove(this.report.lineId)
+     /* this.reportStoreService.remove(this.report.lineId)
         .subscribe(
           res => this.router.navigate(
             ['../'],
             { relativeTo: this.route}
           )
-        );
+        );*/
     }
   }
 

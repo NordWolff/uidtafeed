@@ -19,7 +19,6 @@ export class ReportListComponent implements OnInit {
     this.reportStoreService.getAll()
       .subscribe(resp => {
         this.reports = resp;
-        console.table(resp);
       });
   }
 
