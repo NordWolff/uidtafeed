@@ -24,11 +24,13 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/semantic-ui-css/semantic.css",
               "node_modules/material-dashboard/assets/css/material-dashboard.min.css",
               "src/styles.css"
             ],
             "scripts": [
-
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/semantic-ui-css/semantic.min.js"
             ]
           },
           "configurations": {
@@ -122,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "uidtafeed"
+    }
+  },
+  "defaultProject": "uidtafeed",
+  "cli": {
+    "analytics": "4fe1d99f-9158-481d-8607-9ff383dcfea1"
+  }
 }

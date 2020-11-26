@@ -1,0 +1,14 @@
+<div class="ui middle aligned selection divided list">
+  <!--<button (click)="storeData()" class="ui button blue">Daten senden</button>-->
+  <br>
+  <app-report-list-item
+    class="item"
+    *ngFor="let b of reports"
+    [report]="b"
+    [routerLink]="b.lineId"></app-report-list-item>
+  <div *ngIf="!reports" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <p *ngIf="reports && !reports.length">Es wurden noch kein Feedback eingetragen.</p>
+</div>

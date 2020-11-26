@@ -1,33 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { FeedbackComponent } from './feedback/feedback.component';
-import { TagComponent } from './dashboard/tag/tag.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import {routing} from './app.routing';
-import { IncidentseverityComponent } from './feedback/incidentseverity/incidentseverity.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReportListComponent } from './report-list/report-list.component';
+import { ReportListItemComponent } from './report-list-item/report-list-item.component';
+import { ReportDetailsComponent } from './report-details/report-details.component';
+import { AppRoutingModule } from './app.routing';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    FeedbackComponent,
-    TagComponent,
-    DashboardComponent,
-    SidebarComponent,
-    IncidentseverityComponent
+    ReportListComponent,
+    ReportListItemComponent,
+    ReportDetailsComponent,
+    HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    routing,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

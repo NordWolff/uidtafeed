@@ -1,0 +1,14 @@
+<!--<img class="ui tiny image rounded"
+     *ngIf="report.thumbnails && report.thumbnails[0] && report.thumbnails[0].url"
+     [src]="report.thumbnails[0].url">-->
+<div class="content">
+  <div class="header">{{ report.lineId }}
+    <div *ngIf="report.incidentType" class="description">{{ report.incidentType }}</div>
+    <div class="metadata">
+      <span>{{ report.status }}</span>
+      <br>
+      <span>{{ report.published | date: 'fullDate': 'de' }}</span>
+    </div>
+  </div>
+</div>
+

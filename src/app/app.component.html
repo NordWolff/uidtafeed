@@ -1,11 +1,9 @@
-<div class="container-fluid">
-<app-header></app-header>
-  <div class="wrapper">
-    <app-sidebar></app-sidebar>
-  <div class="main-panel">
-    <router-outlet></router-outlet>
+<div class="ui container">
+  {{title}}
+  <div class="ui menu">
+    <a class="item" routerLink="home"><i class="right icon home"></i></a>
+    <a class="item" routerLink="reports">Reports</a>
   </div>
-</div>
-<app-footer></app-footer>
+  <router-outlet></router-outlet>
 </div>
 
