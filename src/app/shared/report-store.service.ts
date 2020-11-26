@@ -18,20 +18,18 @@ export class ReportStoreService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Report[]> {
-    const url = `${this.api}/reports`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.api}/reports`);
   }
 
   findByLineId(lineId: string, updateFunction: (result: Array<Report>) => void): void{
-    this.http.get<Array<Report>>(this.api + '/report/' + lineId).subscribe(updateFunction);
+    this.http.get<Array<Report>>(`${this.api}/report/${lineId}`).subscribe(updateFunction);
     publish('report.search', lineId);
   }
 
 
   remove(lineId: string): Observable<any> {
-    const url = `${this.api}/report/${lineId}`;
     return this.http.delete(
-      url,
+      `${this.api}/report/${lineId}`,
       { responseType: 'text'}
     );
   }
