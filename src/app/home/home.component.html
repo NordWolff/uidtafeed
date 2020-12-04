@@ -1,6 +1,10 @@
 <h1>Home</h1>
 <p>Das ist das Assia@Service Feedback Tool</p>
-<a class="ui red button" routerLink="../reports">
+<button class="ui red button" routerLink="../reports" [disabled]="!welcomeMessage">
   <i class="right icon list ul"></i>
   Los geht's
-</a>
+</button>
+<div class="container">
+  <h4 class="text-success font-weight-bold" *ngIf="welcomeMessage">{{ welcomeMessage }}</h4>
+  <h4 class="text-danger font-weight-bold" *ngIf="!welcomeMessage">Spring is Offline</h4>
+</div>

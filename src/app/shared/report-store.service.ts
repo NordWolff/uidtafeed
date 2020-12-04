@@ -4,18 +4,25 @@ import {HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {publish} from 'pubsub-js';
 
+export class HelloSpring {
+  constructor(public message: string) {
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ReportStoreService {
   /*private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
-  private api = 'http://localhost:8090';
-
-  /*httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };*/
+  private api = 'https://twolff-cloud.net:8443';
+  //private api = 'https://localhost:8443';
 
   constructor(private http: HttpClient) {}
+
+  getWelcomeMessage(): any {
+    return this.http.get<HelloSpring>(`${this.api}/welcome`);
+
+  }
 
   getAll(): Observable<Report[]> {
     return this.http.get<any[]>(`${this.api}/reports`);

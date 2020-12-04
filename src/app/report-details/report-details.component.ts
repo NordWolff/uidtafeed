@@ -25,8 +25,7 @@ export class ReportDetailsComponent implements OnInit {
   getfindByLineId(): void {
     const params = this.route.snapshot.paramMap;
     this.reportStoreService.findByLineId(params.get('lineId'), (b) => {
-      this.report = b,
-      console.log(this.report.find());
+      this.report = b;
     });
   }
 
@@ -36,8 +35,9 @@ export class ReportDetailsComponent implements OnInit {
   }
 
   removeReport(): void {
+    const params = this.route.snapshot.paramMap;
     if (confirm('Wirklich löschen?')) {
-     this.reportStoreService.remove(this.report.join('lineId'))
+     this.reportStoreService.remove(params.get('lineId'))
         .subscribe(
           res => this.router.navigate(
             ['../'],
