@@ -1,36 +1,35 @@
-<div *ngFor="let item of report">
-<div *ngIf="report">
-  <h1>{{ item.incidentType }}</h1>
-  <h3 *ngIf="item.knownError">{{ item.knownError }}</h3>
+<div *ngIf="report; else loading">
+  <h1>{{ report.incidentType }}</h1>
+  <h3 *ngIf="report.knownError">{{ report.knownError }}</h3>
   <div class="ui divider"></div>
   <div class="ui grid">
     <div class="four wide column">
       <h4>Autor</h4>
-        {{ item.author }}
+        {{ report.author }}
     </div>
     <div class="four wide column">
       <h4>LineID</h4>
-      {{ (item.lineId)}}
+      {{ (report.lineId)}}
     </div>
     <div class="four wide column">
       <h4>LineID</h4>
-      {{ (item.attr)}}
+      {{ (report.attr)}}
     </div>
     <div class="four wide column">
       <h4 class="font-weight-bold">Erschienen</h4>
-      {{ item.published | date: ('dd.MM.yyyy') }}
+      {{ report.published | date: ('dd.MM.yyyy') }}
     </div>
-    <!--<div class="four wide column">
+    <div class="four wide column">
       <h4>Rating</h4>
       <i class="yellow star icon"
-         *ngFor="let r of getRating(item.rating)"></i>
-    </div>-->
+         *ngFor="let r of getRating(report.rating)"></i>
+    </div>
   </div>
   <br>
   <h4 class="font-weight-bold">Beschreibung</h4>
-  <p>{{ item.freeText}}</p>
+  <p>{{ report.freeText}}</p>
   <div class="ui small images">
-    <img *ngFor="let thumbnail of item.thumbnails"
+    <img *ngFor="let thumbnail of report.thumbnails"
          [src]="thumbnail.url">
   </div>
   <button class="ui tiny red labeled icon button"
@@ -38,7 +37,7 @@
     <i class="remove icon"></i> Report löschen
   </button>
 </div>
-</div>
+
 
 <ng-template #loading>
   <div class="ui active centered inline loader"></div>

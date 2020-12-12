@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Report} from '../shared/report';
 import {ReportStoreService} from '../shared/report-store.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./report-details.component.css']
 })
 export class ReportDetailsComponent implements OnInit {
-  report: Array<Report>;
+  report: Report;
 
   constructor(
     private reportStoreService: ReportStoreService,
@@ -29,23 +29,19 @@ export class ReportDetailsComponent implements OnInit {
     });
   }
 
-
   getRating(num: number): any {
     return new Array(num);
   }
 
   removeReport(): void {
-    const params = this.route.snapshot.paramMap;
     if (confirm('Wirklich löschen?')) {
-     this.reportStoreService.remove(params.get('lineId'))
+     this.reportStoreService.remove(this.report.lineId)
         .subscribe(
           res => this.router.navigate(
             ['../'],
-            { relativeTo: this.route}
+          { relativeTo: this.route}
           )
         );
     }
   }
-
-
 }
