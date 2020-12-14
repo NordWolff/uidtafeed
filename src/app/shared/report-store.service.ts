@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Report} from './report';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {publish} from 'pubsub-js';
-import {catchError} from 'rxjs/operators';
 
 export class HelloSpring {
   constructor(public message: string) {
@@ -14,9 +13,12 @@ export class HelloSpring {
   providedIn: 'root'
 })
 export class ReportStoreService {
-  /*private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
-  //private api = 'https://twolff-cloud.net:8443';
-  private api = 'https://localhost:8443';
+  // tslint:disable-next-line:jsdoc-format
+  /** private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
+  // tslint:disable-next-line:jsdoc-format
+  private api = 'https://twolff-cloud.net:8443';
+  // tslint:disable-next-line:jsdoc-format
+  /** private api = 'https://localhost:8443'; **/
 
   constructor(private http: HttpClient) {}
 

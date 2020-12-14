@@ -25,7 +25,8 @@ export class ReportDetailsComponent implements OnInit {
   getfindByLineId(): void {
     const params = this.route.snapshot.paramMap;
     this.reportStoreService.findByLineId(params.get('lineId'), (b) => {
-      this.report = b;
+      this.report = b,
+      console.log(b);
     });
   }
 

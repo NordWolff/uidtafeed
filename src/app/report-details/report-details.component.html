@@ -28,9 +28,18 @@
   <br>
   <h4 class="font-weight-bold">Beschreibung</h4>
   <p>{{ report.freeText}}</p>
+
+    <div class="card" style="width: 10rem;">
+      <img class="card-img-top"
+           [src]="report.thumbnails.url">
+      <div class="card-body">
+        <p class="card-text">{{ report.thumbnails.title}}</p>
+      </div>
+    </div>
   <div class="ui small images">
-    <img *ngFor="let thumbnail of report.thumbnails"
-         [src]="thumbnail.url">
+    <!--<img *ngFor="let thumbnail of report.thumbnails"
+         [src]="thumbnail.url">-->
+
   </div>
   <button class="ui tiny red labeled icon button"
          (click)="removeReport()" >
