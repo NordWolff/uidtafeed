@@ -1,6 +1,8 @@
 import {DoneStatus} from './done-status.enum';
+import {Thumbnail} from './report';
 
-export interface Report {
+export interface ReportRaw {
+
   id: number;
   lineId: string;
   freeText?: string;
@@ -9,16 +11,15 @@ export interface Report {
   incidentType: string;
   attr: string;
   knownError: string;
-  published: Date;
-  edit?: Date;
-  status?: DoneStatus;
-  thumbnails?: Thumbnail;
+  published: string;
+  edit?: string;
+  status?: string;
+  thumbnails?: ThumbnailRaw;
   author: string;
   rating: number;
 }
 
-
-export interface Thumbnail {
+export interface ThumbnailRaw {
   url: string;
   title?: string;
 }

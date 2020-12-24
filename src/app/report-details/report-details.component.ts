@@ -20,13 +20,21 @@ export class ReportDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getfindByLineId();
+
+  }
+
+  getSingleByLineId(): void{
+    const params = this.route.snapshot.paramMap;
+    this.reportStoreService.getSingle(params.get('lineId'))
+      .subscribe(b => {
+        this.report = b;
+      });
   }
 
   getfindByLineId(): void {
     const params = this.route.snapshot.paramMap;
     this.reportStoreService.findByLineId(params.get('lineId'), (b) => {
-      this.report = b,
-      console.log(b);
+      this.report = b;
     });
   }
 

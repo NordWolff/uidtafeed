@@ -8,6 +8,10 @@ import { ReportListItemComponent } from './report-list-item/report-list-item.com
 import { ReportDetailsComponent } from './report-details/report-details.component';
 import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import { ReportFormComponent } from './report-form/report-form.component';
+import { CreateReportComponent } from './create-report/create-report.component';
 
 
 @NgModule({
@@ -16,12 +20,16 @@ import { HomeComponent } from './home/home.component';
     ReportListComponent,
     ReportListItemComponent,
     ReportDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    ReportFormComponent,
+    CreateReportComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule,
+        DateValueAccessorModule
     ],
   providers: [],
   bootstrap: [AppComponent]

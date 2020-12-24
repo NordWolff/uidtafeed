@@ -1,8 +1,9 @@
 <div class="ui container">
   {{title}}
   <div class="ui menu">
-    <a class="item" routerLink="home"><i class="right icon home"></i></a>
-    <a class="item" routerLink="reports">Reports</a>
+    <a class="item" routerLink="home" routerLinkActive="active"><i class="right icon home"></i></a>
+    <a class="item" routerLink="reports" routerLinkActive="active">Reports</a>
+    <a class="item" routerLink="admin" routerLinkActive="active">Administration</a>
   </div>
   <router-outlet></router-outlet>
 </div>

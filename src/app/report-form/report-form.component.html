@@ -1,0 +1,89 @@
+<form class="ui form"
+      (ngSubmit)="submitForm()"
+      #reportForm="ngForm">
+
+  <label>LineId</label>
+  <input
+    name="lineId"
+    [(ngModel)]="report.lineId"
+    required
+    minlength="10"
+    maxlength="20"
+    #lineIdInput="ngModel">
+
+  <label>Wie wurde die Störung behoben:</label>
+  <input
+    name="attr"
+    [(ngModel)]="report.attr"
+    required
+    #attrInput="ngModel">
+
+  <label>Stärke der Störung:</label>
+  <input
+    name="incidentSeverity"
+    [(ngModel)]="report.incidentSeverity"
+    required
+    #incidentSeverityInput="ngModel">
+
+  <label>Auswirkung der Störung (Vor Ort festgestellt)</label>
+  <input
+    name="incidentType"
+    [(ngModel)]="report.incidentType"
+    required
+    #incidentInput="ngModel">
+
+  <label>War das ein bekannter Fehler:</label>
+  <input
+    name="knownError"
+    [(ngModel)]="report.knownError"
+    required
+    #knownErrorInput="ngModel">
+
+  <label>Wo wurde die Störung behoben:</label>
+  <input
+    name="resolvedCi"
+    [(ngModel)]="report.resolvedCi"
+    required
+    #resolvedCiInput="ngModel">
+
+  <label>Erstellungsdatum</label>
+  <input
+    type="date"
+    name="published"
+    [(ngModel)]="report.published"
+    #dateInput="ngModel">
+
+  <label>Autor</label>
+  <input
+    name="author"
+    [(ngModel)]="report.author"
+    required
+    #authorInput="ngModel">
+
+
+  <label>Beschreibung</label>
+  <textarea
+    name="freeText"
+    [(ngModel)]="report.freeText"></textarea>
+
+  <label>Bild</label>
+  <div class="two fields">
+    <div class="field">
+      <input
+        name="url"
+        [(ngModel)]="report.thumbnails.url"
+        placeholder="URL">
+    </div>
+    <div class="field">
+      <input
+        name="title"
+        [(ngModel)]="report.thumbnails.title"
+        placeholder="Titel">
+    </div>
+  </div>
+
+  <button class="ui button" type="submit"
+          [disabled]="reportForm.invalid">
+    Speichern
+  </button>
+</form>

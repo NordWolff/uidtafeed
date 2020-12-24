@@ -3,6 +3,9 @@ import {Report} from './report';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {publish} from 'pubsub-js';
+import {ReportRaw} from './report-raw';
+import {catchError, map, retry} from 'rxjs/operators';
+import {ReportFactory} from './report-factory';
 
 export class HelloSpring {
   constructor(public message: string) {
@@ -15,10 +18,7 @@ export class HelloSpring {
 export class ReportStoreService {
   // tslint:disable-next-line:jsdoc-format
   /** private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
-  // tslint:disable-next-line:jsdoc-format
-  private api = 'https://twolff-cloud.net:8443';
-  // tslint:disable-next-line:jsdoc-format
-  /** private api = 'https://localhost:8443'; **/
+  private api = 'http://e2e.diskstation.org:8090';
 
   constructor(private http: HttpClient) {}
 
@@ -28,17 +28,32 @@ export class ReportStoreService {
   }
 
   getAll(): Observable<Report[]> {
-    return this.http.get<any[]>(`${this.api}/reports`);
+    return this.http.get<ReportRaw[]>(`${this.api}/reports`)
+      .pipe(
+        map(
+          reportRaw =>
+            reportRaw.map(b => ReportFactory.fromRaw(b)),
+        )
+      );
   }
 
   findByLineId(lineId: string, updateFunction: (result: Report) => void): void{
-    this.http.get<Report>(`${this.api}/report/${lineId}`).subscribe(updateFunction);
-    publish('report.search', lineId);
+     this.http.get<ReportRaw>(
+      `${this.api}/report/${lineId}`)
+      .pipe(
+        retry(3),
+        map(b => ReportFactory.fromRaw(b))
+      )
+      .subscribe(updateFunction);
+     publish('report.search', lineId);
   }
 
   getSingle(lineId: string): Observable<Report> {
-    return this.http.get<any>(
+    return this.http.get<ReportRaw>(
       `${this.api}/report/${lineId}`
+    ).pipe(
+      retry(3),
+      map(b => ReportFactory.fromRaw(b))
     );
   }
 
@@ -48,6 +63,14 @@ export class ReportStoreService {
       `${this.api}/remove/${lineId}`,
       { responseType: 'text' }
     );
+  }
+
+  create(report: Report): Observable<any> {
+    return this.http.post(
+      `${this.api}/add`,
+      report,
+      {responseType: 'text'}
+    ).pipe(); // catchError(this.errorHandler)
   }
 
 
