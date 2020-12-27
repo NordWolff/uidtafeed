@@ -1,30 +1,46 @@
 <div *ngIf="report; else loading">
   <h1>{{ report.incidentType }}</h1>
-  <h3 *ngIf="report.knownError">{{ report.knownError }}</h3>
   <div class="ui divider"></div>
   <div class="ui grid">
     <div class="four wide column">
-      <h4>Autor</h4>
+      <h4 class="font-weight-bold">Autor</h4>
         {{ report.author }}
     </div>
     <div class="four wide column">
-      <h4>LineID</h4>
+      <h4 class="font-weight-bold">LineID</h4>
       {{ (report.lineId)}}
-    </div>
-    <div class="four wide column">
-      <h4>LineID</h4>
-      {{ (report.attr)}}
     </div>
     <div class="four wide column">
       <h4 class="font-weight-bold">Erschienen</h4>
       {{ report.published | date: ('dd.MM.yyyy') }}
     </div>
     <div class="four wide column">
-      <h4>Rating</h4>
+      <h4 class="font-weight-bold">Rating</h4>
       <i class="yellow star icon"
          *ngFor="let r of getRating(report.rating)"></i>
     </div>
   </div>
+
+  <div class="ui grid">
+    <div class="four wide column">
+      <h4 class="font-weight-bold">War das ein bekannter Fehler?</h4>
+      {{ report.knownError }}
+    </div>
+    <div class="four wide column">
+      <h4 class="font-weight-bold">Wie wurde die Störung behoben?</h4>
+      {{ (report.attr)}}
+    </div>
+    <div class="four wide column">
+      <h4 class="font-weight-bold">Auswirkung der Störung (Vor Ort festgestellt)</h4>
+      {{ (report.incidentType)}}
+    </div>
+    <div class="four wide column">
+      <h4 class="font-weight-bold">Wo wurde die Störung behoben?</h4>
+      {{ (report.resolvedCi)}}
+    </div>
+  </div>
+
+
   <br>
   <h4 class="font-weight-bold">Beschreibung</h4>
   <p>{{ report.freeText}}</p>

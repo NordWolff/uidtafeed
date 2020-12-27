@@ -38,7 +38,8 @@ export class ReportFactory {
       edit: new Date(b.edit),
       status: DoneStatus.POSTEINGANG,
       rating: b.rating,
-      thumbnails: b.thumbnails
+      thumbnails: b.thumbnails,
+      freeText: b.freeText,
     };
   }
 }

@@ -1,70 +1,161 @@
-<form class="ui form"
-      (ngSubmit)="submitForm()"
-      #reportForm="ngForm">
+<form
+  class="ui form"
+  (ngSubmit)="submitForm()"
+  #reportForm="ngForm">
 
-  <label>LineId</label>
-  <input
-    name="lineId"
-    [(ngModel)]="report.lineId"
-    required
-    minlength="10"
-    maxlength="20"
-    #lineIdInput="ngModel">
+  <div class="form-row">
+    <div class="col-2">
+      <label>LineId</label>
+      <input
+        name="lineId"
+        [(ngModel)]="report.lineId"
+        required
+        minlength="10"
+        maxlength="20"
+        #lineIdInput="ngModel"
+        placeholder="DEU.DTAG."
+        value="">
+    </div>
+    <div class="col-6">
+      <label>Autor</label>
+      <input
+        name="author"
+        [(ngModel)]="report.author"
+        required
+        #authorInput="ngModel"
+        placeholder="assia@service">
+    </div>
+    <div class="col-2">
+      <label>Erstellungsdatum</label>
+      <input
+        type="date"
+        name="published"
+        [(ngModel)]="report.published"
+        #dateInput="ngModel">
+    </div>
+  </div>
 
-  <label>Wie wurde die Störung behoben:</label>
-  <input
-    name="attr"
-    [(ngModel)]="report.attr"
-    required
-    #attrInput="ngModel">
 
-  <label>Stärke der Störung:</label>
-  <input
-    name="incidentSeverity"
-    [(ngModel)]="report.incidentSeverity"
-    required
-    #incidentSeverityInput="ngModel">
+<div class="form-row">
+  <div class="col">
+    <label for="attr">Wie wurde die Störung behoben:</label>
+    <select
+      name="attr"
+      [(ngModel)]="report.attr"
+      class="form-control selectpicker" data-style="btn btn-link"
+      required
+      #attrInput="ngModel"
+      id="attr">
+      <option>Fix/Verkabelung</option>
+      <option>Konfiguration</option>
+      <option>Gleichtausch(Engerätetausch 1:1)</option>
+      <option>Ungleichtausch(Endgerät)</option>
+      <option>Beseitigung Störer</option>
+      <option>Reset</option>
+      <option>SW Update</option>
+      <option>PTI EInbindung</option>
+      <option>NSO Einbindung</option>
+      <option>kein Fehler gefunden</option>
+      <option>anderes</option>
+    </select>
+  </div>
 
-  <label>Auswirkung der Störung (Vor Ort festgestellt)</label>
-  <input
-    name="incidentType"
-    [(ngModel)]="report.incidentType"
-    required
-    #incidentInput="ngModel">
+  <div class="col">
+    <label for="incidentSeverity">Stärke der Störung:</label>
+    <select
+            name="incidentSeverity"
+            class="form-control selectpicker"
+            data-style="btn btn-link"
+            id="incidentSeverity"
+            [(ngModel)]="report.incidentSeverity"
+            required
+            #incidentSeverityInput="ngModel">
+      <option>ständig</option>
+      <option>häufig(jeden Tag)</option>
+      <option>manchmal(1-2mal pro Woche)</option>
+      <option>selten(1-2mal pro Monat)</option>
+      <option>anderes</option>
+    </select>
+  </div>
+</div>
 
-  <label>War das ein bekannter Fehler:</label>
-  <input
-    name="knownError"
-    [(ngModel)]="report.knownError"
-    required
-    #knownErrorInput="ngModel">
 
-  <label>Wo wurde die Störung behoben:</label>
-  <input
+<div class="form-row">
+  <div class="col">
+    <label for="incidentType">Auswirkung der Störung (Vor Ort festgestellt)</label>
+    <select
+      name="incidentType"
+      [(ngModel)]="report.incidentType"
+      required
+      #incidentInput="ngModel"
+      class="form-control selectpicker"
+      data-style="btn btn-link"
+      id="incidentType">
+      <option>Totalausfall</option>
+      <option>Internet Ausfall</option>
+      <option>Internet zu langsam</option>
+      <option>Entertain Ausfall</option>
+      <option>Entertain Bild/Tonqualität</option>
+      <option>Telefonie Ausfall/Qualität</option>
+      <option>WLAN Problem</option>
+      <option>anderes</option>
+    </select>
+  </div>
+  <div class="col">
+    <label for="knownError">War das ein bekannter Fehler:</label>
+    <select
+      name="knownError"
+      [(ngModel)]="report.knownError"
+      required
+      #knownErrorInput="ngModel"
+      class="form-control selectpicker"
+      data-style="btn btn-link"
+      id="knownError">
+      <option>Stichleitung</option>
+      <option>WLAN</option>
+      <option>Router defekt</option>
+      <option>Kontakte TAE</option>
+      <option>Kontakte KVz</option>
+      <option>IAD nicht komaptibel</option>
+      <option>Port Tausch</option>
+      <option>Port Reset</option>
+      <option>Ersteinrichtung</option>
+      <option>Störer</option>
+      <option>Power Lan</option>
+      <option>neuer Fehler</option>
+      <option>siehe Freitext</option>
+    </select>
+  </div>
+</div>
+
+
+
+  <label for="resolvedCi">Wo wurde die Störung behoben:</label>
+  <select
     name="resolvedCi"
     [(ngModel)]="report.resolvedCi"
     required
-    #resolvedCiInput="ngModel">
-
-  <label>Erstellungsdatum</label>
-  <input
-    type="date"
-    name="published"
-    [(ngModel)]="report.published"
-    #dateInput="ngModel">
-
-  <label>Autor</label>
-  <input
-    name="author"
-    [(ngModel)]="report.author"
-    required
-    #authorInput="ngModel">
-
+    #resolvedCiInput="ngModel"
+    class="form-control selectpicker"
+    data-style="btn btn-link"
+    id="resolvedCi">
+    <option>IAD/Router/Kabel zum IAD</option>
+    <option>KVz/Kabel zum KVz</option>
+    <option>APL/Kabel zum APL</option>
+    <option>TAE/Kabel zur TAE</option>
+    <option>Heimnetz</option>
+    <option>PowerLAN</option>
+    <option>MSAN</option>
+    <option>Line-Card</option>
+    <option>Client(Handy,PC,...)</option>
+    <option>anderer Anschluss(Nachbar)</option>
+  </select>
 
   <label>Beschreibung</label>
   <textarea
     name="freeText"
     [(ngModel)]="report.freeText"></textarea>
+  <small id="emailHelp" class="form-text text-muted text-rose">Es ist zu beachten das keine persönlichen Kundendaten hier dokumentiert werden dürfen</small>
 
   <label>Bild</label>
   <div class="two fields">
