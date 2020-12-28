@@ -1,5 +1,5 @@
 <div *ngIf="report; else loading">
-  <h1>{{ report.incidentType }}</h1>
+  <h1>Lfd-Nr.{{ report.id }}</h1>
   <div class="ui divider"></div>
   <div class="ui grid">
     <div class="four wide column">
@@ -14,7 +14,7 @@
       <h4 class="font-weight-bold">Erschienen</h4>
       {{ report.published | date: ('dd.MM.yyyy') }}
     </div>
-    <div class="four wide column">
+    <div class="four wide column" hidden>
       <h4 class="font-weight-bold">Rating</h4>
       <i class="yellow star icon"
          *ngFor="let r of getRating(report.rating)"></i>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,10 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { ReportFormComponent } from './report-form/report-form.component';
 import { CreateReportComponent } from './create-report/create-report.component';
 import { SearchComponent } from './search/search.component';
+import {registerLocaleData} from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+
+registerLocaleData(localeDe);
 
 
 @NgModule({
@@ -33,7 +37,7 @@ import { SearchComponent } from './search/search.component';
         FormsModule,
         DateValueAccessorModule
     ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'de'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
