@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Report} from './report';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 import {publish} from 'pubsub-js';
 import {ReportRaw} from './report-raw';
 import {catchError, map, retry} from 'rxjs/operators';
 import {ReportFactory} from './report-factory';
+import {removeErrorMarkup} from 'tslint/lib/verify/parse';
 
 export class HelloSpring {
   constructor(public message: string) {
@@ -42,8 +43,8 @@ export class ReportStoreService {
       `${this.api}/report/${lineId}`)
       .pipe(
         retry(3),
-        map(b => ReportFactory.fromRaw(b))
-      )
+        map(b => ReportFactory.fromRaw(b)),
+        catchError(this.errorHandler))
       .subscribe(updateFunction);
      publish('report.search', lineId);
   }
@@ -53,8 +54,8 @@ export class ReportStoreService {
       `${this.api}/report/${lineId}`
     ).pipe(
       retry(3),
-      map(b => ReportFactory.fromRaw(b))
-    );
+      map(b => ReportFactory.fromRaw(b)),
+    catchError(this.errorHandler));
   }
 
 
@@ -71,6 +72,23 @@ export class ReportStoreService {
       report,
       {responseType: 'text'}
     ).pipe(); // catchError(this.errorHandler)
+  }
+
+  getAllSearch(searchTerm: string): Observable<Report[]>{
+    return this.http.get<ReportRaw[]>(
+      `${this.api}/reports/search/${searchTerm}`
+    ).pipe(
+      retry(3),
+      map(reportsRaw =>
+      reportsRaw.map(b => ReportFactory.fromRaw(b)),
+        ),
+      catchError(this.errorHandler)
+    );
+  }
+
+  private errorHandler(error: HttpErrorResponse): Observable<any>{
+    console.log('Fehler ist aufgetreten');
+    return throwError(error);
   }
 
 

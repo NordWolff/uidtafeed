@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { ReportFormComponent } from './report-form/report-form.component';
 import { CreateReportComponent } from './create-report/create-report.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CreateReportComponent } from './create-report/create-report.component';
     ReportDetailsComponent,
     HomeComponent,
     ReportFormComponent,
-    CreateReportComponent
+    CreateReportComponent,
+    SearchComponent
   ],
     imports: [
         BrowserModule,
