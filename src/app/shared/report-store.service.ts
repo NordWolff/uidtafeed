@@ -6,7 +6,6 @@ import {publish} from 'pubsub-js';
 import {ReportRaw} from './report-raw';
 import {catchError, map, retry} from 'rxjs/operators';
 import {ReportFactory} from './report-factory';
-import {removeErrorMarkup} from 'tslint/lib/verify/parse';
 
 export class HelloSpring {
   constructor(public message: string) {
@@ -19,7 +18,7 @@ export class HelloSpring {
 export class ReportStoreService {
   // tslint:disable-next-line:jsdoc-format
   /** private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
-  private api = 'http://e2e.diskstation.org:8090';
+  private api = 'https://twolff.diskstation.org:8090';
 
   constructor(private http: HttpClient) {}
 
