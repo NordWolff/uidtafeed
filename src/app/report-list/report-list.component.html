@@ -3,9 +3,9 @@
   <br>
   <app-report-list-item
     class="item"
-    *ngFor="let b of reports"
-    [report]="b"
-    [routerLink]="b.lineId"></app-report-list-item>
+    *ngFor="let report of reports"
+    [report]="report"
+    [routerLink]="report.id"></app-report-list-item>
   <div *ngIf="!reports" class="ui active dimmer">
     <div class="ui large text loader">Daten werden geladen...</div>
   </div>

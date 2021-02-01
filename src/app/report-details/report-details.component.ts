@@ -15,11 +15,12 @@ export class ReportDetailsComponent implements OnInit {
   constructor(
     private reportStoreService: ReportStoreService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.getSingleByLineId();
+    // this.getSingleByLineId();
+    this.getfindById();
 
   }
 
@@ -31,10 +32,11 @@ export class ReportDetailsComponent implements OnInit {
       });
   }
 
-  getfindByLineId(): void {
+  getfindById(): void {
     const params = this.route.snapshot.paramMap;
-    this.reportStoreService.findByLineId(params.get('lineId'), (b) => {
+    this.reportStoreService.findById(Number(params.get('lineId')), (b) => {
       this.report = b;
+
     });
   }
 

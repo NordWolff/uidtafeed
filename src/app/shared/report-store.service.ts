@@ -18,7 +18,9 @@ export class HelloSpring {
 export class ReportStoreService {
   // tslint:disable-next-line:jsdoc-format
   /** private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
-  private api = 'https://twolff.diskstation.org:8090';
+  //
+  /*private api = 'http://twolff.diskstation.org:8090';*/
+  private api = 'http://localhost:8080/api/feedback';
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +30,7 @@ export class ReportStoreService {
   }
 
   getAll(): Observable<Report[]> {
-    return this.http.get<ReportRaw[]>(`${this.api}/reports`)
+    return this.http.get<ReportRaw[]>(`${this.api}`)
       .pipe(
         map(
           reportRaw =>
@@ -37,20 +39,28 @@ export class ReportStoreService {
       );
   }
 
-  findByLineId(lineId: string, updateFunction: (result: Report) => void): void{
+  /**
+   * Anfrage gegen die Report ID
+   * @param id
+   */
+  findById(id: number, updateFunction: (result: Report) => void): void{
      this.http.get<ReportRaw>(
-      `${this.api}/report/${lineId}`)
+      `${this.api}/id/${id}`)
       .pipe(
         retry(3),
         map(b => ReportFactory.fromRaw(b)),
         catchError(this.errorHandler))
       .subscribe(updateFunction);
-     publish('report.search', lineId);
+     publish('report.search', id);
   }
 
+  /**
+   * Anfrage nach String lineId
+   * @param lineId
+   */
   getSingle(lineId: string): Observable<Report> {
     return this.http.get<ReportRaw>(
-      `${this.api}/report/${lineId}`
+      `${this.api}/lineId/${lineId}`
     ).pipe(
       retry(3),
       map(b => ReportFactory.fromRaw(b)),

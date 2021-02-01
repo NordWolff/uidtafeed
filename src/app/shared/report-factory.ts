@@ -6,8 +6,9 @@ export class ReportFactory {
 
   static empty(): Report{
     return {
+      id: 0,
       attr: '',
-      author: '',
+      author: 'assia@service.de',
       published: new Date(),
       incidentSeverity: '',
       incidentType: '',
@@ -17,18 +18,18 @@ export class ReportFactory {
       edit: new Date(),
       status: DoneStatus.POSTEINGANG,
       rating: 0,
-      thumbnails: {url: '', title: ''},
-      id: 0,
-      freeText: ''
+      thumbnails: [{id: 0, url: '', title: ''}],
+      freeText: '',
+      username: ''
 
     };
   }
 
   static fromRaw(b: ReportRaw): Report {
     return {
+      id: b.id,
       attr: b.attr,
       author: b.author,
-      id: b.id,
       incidentSeverity: b.incidentSeverity,
       incidentType: b.incidentType,
       knownError: b.knownError,
@@ -40,6 +41,7 @@ export class ReportFactory {
       rating: b.rating,
       thumbnails: b.thumbnails,
       freeText: b.freeText,
+      username: b.username
     };
   }
 }

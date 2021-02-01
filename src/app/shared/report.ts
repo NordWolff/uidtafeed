@@ -12,13 +12,15 @@ export interface Report {
   published: Date;
   edit?: Date;
   status?: DoneStatus;
-  thumbnails?: Thumbnail;
+  thumbnails?: Thumbnail[];
   author: string;
   rating: number;
+  username?: string;
 }
 
 
 export interface Thumbnail {
+  id: number;
   url: string;
   title?: string;
 }
