@@ -46,7 +46,7 @@ export class ReportDetailsComponent implements OnInit {
 
   removeReport(): void {
     if (confirm('Wirklich löschen?')) {
-     this.reportStoreService.remove(this.report.lineId)
+     this.reportStoreService.remove(this.report.id)
         .subscribe(
           res => this.router.navigate(
             ['../'],

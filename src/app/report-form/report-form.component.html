@@ -158,20 +158,20 @@
   <small id="emailHelp" class="form-text text-muted text-rose">Es ist zu beachten das keine persönlichen Kundendaten hier dokumentiert werden dürfen</small>
 
   <label>Bild</label>
-  <!--<div class="two fields">
+  <div class="two fields">
     <div class="field">
       <input
         name="url"
-        [(ngModel)]="report.thumbnails.url"
+        [(ngModel)]="report.thumbnails[0].url"
         placeholder="URL">
     </div>
     <div class="field">
       <input
         name="title"
-        [(ngModel)]="report.thumbnails.title"
+        [(ngModel)]="report.thumbnails[0].title"
         placeholder="Titel">
     </div>
-  </div>-->
+  </div>
 
   <button class="ui button" type="submit"
           [disabled]="reportForm.invalid">
