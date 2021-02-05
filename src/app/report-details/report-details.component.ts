@@ -19,9 +19,7 @@ export class ReportDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.getSingleByLineId();
     this.getfindById();
-
   }
 
   getSingleByLineId(): void{

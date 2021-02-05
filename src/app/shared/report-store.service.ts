@@ -19,7 +19,8 @@ export class ReportStoreService {
   // tslint:disable-next-line:jsdoc-format
   /** private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
   //
-  /*private api = 'http://twolff.diskstation.org:8090';*/
+ /* private api = 'http://twolff.diskstation.org:8080/api/feedback';*/
+ //
   private api = 'http://localhost:8080/api/feedback';
 
   constructor(private http: HttpClient) {}

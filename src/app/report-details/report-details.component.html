@@ -45,11 +45,11 @@
   <h4 class="font-weight-bold">Beschreibung</h4>
   <p>{{ report.freeText}}</p>
 
-    <div class="card" style="width: 10rem;">
+    <div class="card" style="width: 15rem; height: auto;">
       <!--<img class="card-img-top ui "
            [src]="report.thumbnails.url">-->
       <img *ngFor="let thumbnail of report.thumbnails"
-           [src]="thumbnail.url">
+           [src]="thumbnail.url" style="width: 15rem; height: auto;">
       <div class="card-body" style="background-color: #eee">
         <!--<p class="card-text">{{ report.thumbnails.title}}</p>-->
       </div>
