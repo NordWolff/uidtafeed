@@ -84,13 +84,16 @@ export class ReportStoreService {
     ).pipe(); // catchError(this.errorHandler)
   }
 
-  getAllSearch(searchTerm: string): Observable<Report[]>{
+  getAllSearch(searchTerm: string): Observable<Report[]> {
     return this.http.get<ReportRaw[]>(
       `${this.api}/search/${searchTerm}`
+      // http://localhost:8080/api/feedback/search/DEU.DTAG.JGT54F
     ).pipe(
       retry(3),
       map(reportsRaw =>
-      reportsRaw.map(b => ReportFactory.fromRaw(b)),
+      reportsRaw.map(b => {
+        ReportFactory.fromRaw(b);
+      }),
         ),
       catchError(this.errorHandler)
     );

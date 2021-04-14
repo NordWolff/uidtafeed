@@ -7,8 +7,8 @@
   <div class="results transition visible"
        *ngIf="foundReports.length">
     <a class="result"
-    *ngFor="let report of foundReports"
-    [routerLink]="['..', 'reports', report.id]">
+      *ngFor="let report of foundReports"
+      [routerLink]="['..', 'reports', report.id]">
       {{ report.lineId }}
       <p class="description">{{ report.incidentType}} vom {{ report.published | date: ('dd.MM.yyyy') }}</p>
     </a>
