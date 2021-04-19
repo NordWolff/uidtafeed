@@ -17,8 +17,11 @@ export class HelloSpring {
 })
 export class ReportStoreService {
   // tslint:disable-next-line:jsdoc-format
-  /** private booksApi = 'https://reports-ca530.firebaseio.com/report.json';*/
-  private api = 'https://twolff.diskstation.org:8090';
+  /** private booksApi = 'https://reports-ca530.firebaseio.com/report.json'; */
+  /** private api = 'http://twolff.diskstation.org:8090'; */
+
+  /**  */
+  private api = 'http://localhost:8080/api/feedback';
 
   constructor(private http: HttpClient) {}
 
@@ -58,9 +61,9 @@ export class ReportStoreService {
   }
 
 
-  remove(lineId: string): Observable<any> {
+  remove(id: number): Observable<any> {
     return this.http.delete(
-      `${this.api}/remove/${lineId}`,
+      `${this.api}/remove/${id}`,
       { responseType: 'text' }
     );
   }
@@ -75,7 +78,7 @@ export class ReportStoreService {
 
   getAllSearch(searchTerm: string): Observable<Report[]>{
     return this.http.get<ReportRaw[]>(
-      `${this.api}/reports/search/${searchTerm}`
+      `${this.api}/search/${searchTerm}`
     ).pipe(
       retry(3),
       map(reportsRaw =>

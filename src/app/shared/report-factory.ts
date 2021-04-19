@@ -17,9 +17,10 @@ export class ReportFactory {
       edit: new Date(),
       status: DoneStatus.POSTEINGANG,
       rating: 0,
-      thumbnails: {url: '', title: ''},
+      thumbnails: [{url: '', title: ''}],
       id: 0,
-      freeText: ''
+      freeText: '',
+      username: 'thomas.wolff@telekom.de'
 
     };
   }
@@ -40,6 +41,7 @@ export class ReportFactory {
       rating: b.rating,
       thumbnails: b.thumbnails,
       freeText: b.freeText,
+      username: b.username
     };
   }
 }

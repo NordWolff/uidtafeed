@@ -14,9 +14,10 @@ export interface ReportRaw {
   published: string;
   edit?: string;
   status?: string;
-  thumbnails?: ThumbnailRaw;
+  thumbnails?: ThumbnailRaw[];
   author: string;
   rating: number;
+  username: string;
 }
 
 export interface ThumbnailRaw {
